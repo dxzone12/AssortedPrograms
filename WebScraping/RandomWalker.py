@@ -23,6 +23,7 @@ while True:
     # Print some info
     if soup.title:
         print('Title: ' + soup.title.string)
+    print(urlToCheck)
     print('HostName: ' + url.netloc + '\n')
 
     # Get all the links
@@ -52,4 +53,3 @@ while True:
             goodChoice = False
     # Make absolute url from relative path found
     urlToCheck = urlparse.urljoin(urlToCheck, choice)
-    print(urlToCheck)
