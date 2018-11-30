@@ -18,7 +18,7 @@ for url in sys.argv[1:]:
     os.makedirs('IMAGES/' + str(folderCount))
 
     # Get the page
-    page = requests.get(sys.argv[1])
+    page = requests.get(url)
     content = page.content
     soup = BeautifulSoup(content, features = 'html.parser')
 
@@ -32,7 +32,7 @@ for url in sys.argv[1:]:
     for image in imageLinks:
         r = requests.get('http:' + str(image))
         filename = image.split('/')[-1]
-        open('IMAGES/' + filename, 'wb').write(r.content)
+        open('IMAGES/' + str(folderCount) + '/' + filename, 'wb').write(r.content)
         count = count + 1
         print('completed ' + str(count) + '/' + str(total))
     folderCount = folderCount + 1
