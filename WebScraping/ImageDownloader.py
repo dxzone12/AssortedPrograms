@@ -15,7 +15,8 @@ if len(sys.argv) < 2:
 folderCount = 1
 for url in sys.argv[1:]:
     # Make the directories
-    os.makedirs('IMAGES/' + str(folderCount))
+    if not os.path.exists('IMAGES/' + str(folderCount)):
+        os.makedirs('IMAGES/' + str(folderCount))
 
     # Get the page
     page = requests.get(url)
