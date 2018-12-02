@@ -41,15 +41,9 @@ while True:
     prevUrl = urlToCheck
 
     # Pick a random link to use next
-    goodChoice = False
-    choice = ''
-    # Repeat till a valid url is found
-    while not goodChoice:
-        goodChoice = True
-        choice = random.choice(imageLinks)['href']
-        if choice.startswith('javascript'):
-            goodChoice = False
-        if choice.startswith('#'):
-            goodChoice = False
+    # Remove bad links first
+    validLinks = [a for a in imageLinks if not a["href"].startswith('javascript') and not a["href"].startswith('#')]
+    choice = random.choice(validLinks)['href']
+    
     # Make absolute url from relative path found
     urlToCheck = urlparse.urljoin(urlToCheck, choice)
